@@ -10,9 +10,8 @@ const app = express();
 // setting up middleware using express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", api);
 app.use(express.static("public"));
-
+app.use("/api", api);
 //computer is directed to the index.html
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))

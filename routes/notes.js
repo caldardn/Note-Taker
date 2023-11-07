@@ -1,7 +1,7 @@
 const uuid = require("uuid");
 const route = require("express").Router();
 const { readAndAppend, readFromFile } = require('../helpers/fsUtils.js')
-// const id = uuid.v4()
+const id = uuid.v4()
 
 route.get("/", (req, res) =>
   readFromFile('./db/db.json').then((data)=>{
