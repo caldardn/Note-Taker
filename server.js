@@ -1,5 +1,3 @@
-// const fs = require("fs");
-// const db=require('./db/db.json')
 const express = require("express");
 const path = require("path")
 const api = require("./routes/index.js");
@@ -20,6 +18,8 @@ app.get("/", (req, res) =>
 app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
+
+
 
 app.listen(PORT, ()=>{
   console.log(`Running on http://localhost:${PORT}`)
