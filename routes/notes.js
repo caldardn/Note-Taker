@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const route = require("express").Router();
-const { readAndAppend, readFromFile } = require("../helpers/fsUtils.js");
+const { readAndAppend, readFromFile, writeToFile } = require("../helpers/fsUtils.js");
 
 route.get("/", (req, res) =>
   readFromFile("./db/db.json").then((data) => {
@@ -34,7 +34,7 @@ route.delete("/:id", (req, res) => {
   readFromFile("./db/db.json").then((data) => {
     const notes = JSON.parse(data);
     const filterNotes = notes.filter((note) => note.id !== id);
-    fs.writeFile("./db/db.json", JSON.stringify(filterNotes), (err) =>
+    writeToFile("./db/db.json", filterNotes, (err) =>
       err ? console.error(err) : console.log("Note Deleted")
     );
     res.json(filterNotes);
