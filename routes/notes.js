@@ -1,0 +1,23 @@
+const uuid = require("uuid");
+const route = require("express").Router();
+const { readAndAppend, readFromFile } = require('../helpers/fsUtils.js')
+const id = uuid.v4()
+
+route.get("/", (req, res) =>
+  readFromFile('./db/db.json').then((data)=>{
+    res.json(JSON.parse(data))
+  })
+);
+
+route.post("/",(req, res)=>{
+    const { title, text } = req.body
+    if (title && text){
+        const newNote = {
+            title,
+            text,
+            id: uuid.v4()
+        }
+        readAndAppend(newNote, '../db/db.json')
+    }
+})
+
